@@ -79,7 +79,7 @@ set fillchars=vert:\ ,stl:\ ,stlnc:\
 set iskeyword+=_,$,@,%,#,-
 
 " 允许backspace和光标键跨越行边界 
-set whichwrap+=<,>,h,l
+"set whichwrap+=<,>,h,l
 
 " 光标移动到buffer的顶部和底部时保持3行距离  
 set scrolloff=3     
@@ -156,7 +156,7 @@ set hlsearch
 "set guifont=YaHei\ Consolas\ Hybrid\ 11.5
 
 " 禁止折行
-set nowrap
+"set nowrap
 
 " 设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'
