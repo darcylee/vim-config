@@ -10,6 +10,11 @@ let mapleader=";"
 filetype on
 " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
+"文件编码格式
+:set encoding=utf-8
+:set fileencodings=ucs-bom,utf-8,cp936
+:set fileencoding=utf-8
+":set termencoding=utf-8
 
 " <<
 
