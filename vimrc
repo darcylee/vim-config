@@ -84,7 +84,7 @@ set fillchars=vert:\ ,stl:\ ,stlnc:\
 set iskeyword+=_,$,@,%,#,-
 
 " 允许backspace和光标键跨越行边界 
-"set whichwrap+=<,>,h,l
+" set whichwrap+=<,>,h,l
 
 " 光标移动到buffer的顶部和底部时保持3行距离  
 set scrolloff=3     
@@ -101,8 +101,8 @@ runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " 配色方案
-"set background=dark
-"colorscheme darkblue
+" set background=dark
+" colorscheme darkblue
 "colorscheme molokai
 "colorscheme phd
 
@@ -158,7 +158,7 @@ set hlsearch
 " 其他美化
 
 " 设置 gvim 显示字体
-"set guifont=YaHei\ Consolas\ Hybrid\ 11.5
+set guifont=YaHei\ Consolas\ Hybrid\ 11.5
 
 " 禁止折行
 "set nowrap
@@ -571,9 +571,9 @@ set noswapfile
 set backspace=2
 
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-set mouse=a
+" set mouse=a
 set selection=exclusive
-set selectmode=mouse,key
+set selectmode=key
 
 "语言设置
 set langmenu=zh_CN.UTF-8
@@ -708,6 +708,6 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif  " Windows
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
-
+let g:instant_markdown_slow = 1
 
 let g:vimprj_dirNameForSearch = '~/.vimprj'
