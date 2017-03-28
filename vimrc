@@ -1,7 +1,7 @@
 " 更新时间：2015-01-18 21:30:31
 
 " 定义快捷键的前缀，即 <Leader>
-let mapleader=";"
+let mapleader=","
 
 " >>
 " 文件类型侦测
@@ -53,7 +53,8 @@ nnoremap <Leader>jw <C-W>j
 
 " 定义快捷键在结对符之间跳转，助记 pair
 nmap <Leader>pa %
-
+map <S-H> gT
+map <S-L> gt
 " <<
 
 " >>
@@ -89,8 +90,10 @@ set iskeyword+=_,$,@,%,#,-
 " 光标移动到buffer的顶部和底部时保持3行距离  
 set scrolloff=3     
 
-" 我的状态行显示的内容（包括文件类型和解码） 
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
 
 " <<
 
@@ -101,10 +104,18 @@ runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 " 配色方案
-" set background=dark
+"set background=dark
 " colorscheme darkblue
-"colorscheme molokai
-"colorscheme phd
+colorscheme molokai
+
+" 我的状态行显示的内容（包括文件类型和解码） 
+set laststatus=2
+" Broken down into easily includeable segments
+set statusline=%<%f\                     " Filename
+set statusline+=%w%h%m%r                 " Options
+set statusline+=\ [%{&ff}/%Y]            " Filetype                                                                                                                                                                              
+set statusline+=\ [%{getcwd()}]          " Current dir
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 " >>
 " 营造专注气氛
@@ -146,7 +157,7 @@ set ruler
 set number
 
 " 高亮显示当前行/列
-"set cursorline
+set cursorline
 "set cursorcolumn
 
 " 高亮显示搜索结果
@@ -449,6 +460,7 @@ nmap <Leader>man :Man 3 <cword><CR>
 
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
 nmap <Leader>fl :NERDTreeToggle<CR>
+map <C-e> :NERDTreeToggle<CR>
 " 设置 NERDTree 子窗口宽度
 let NERDTreeWinSize=30
 " 设置 NERDTree 子窗口位置
@@ -471,11 +483,11 @@ map <Leader>bl :MBEToggle<cr>
 " buffer 切换快捷键
  noremap <Leader>bf   :MBEbf<CR>                                               
  noremap <Leader>bb   :MBEbb<CR> 
- 
- noremap <C-J>     <C-W>j                                                   
- noremap <C-K>     <C-W>k                                                   
- noremap <C-H>     <C-W>h                                                   
- noremap <C-L>     <C-W>l   
+
+ map <C-J> <C-W>j<C-W>_
+ map <C-K> <C-W>k<C-W>_
+ map <C-L> <C-W>l<C-W>_
+ map <C-H> <C-W>h<C-W>_
 
  noremap <C-Down>  <C-W>j                                                   
  noremap <C-Up>    <C-W>k                                                   
@@ -571,7 +583,9 @@ set noswapfile
 set backspace=2
 
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-" set mouse=a
+" 在输入模式，鼠标失效，这样做的目的是为了远程终端启动vi的时候，可以作为
+" 用鼠标选择，然后复制和粘帖，因为这种情况下，“+y 复制到系统粘帖板失效了
+set mouse=nv
 set selection=exclusive
 set selectmode=key
 
